@@ -3,26 +3,19 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
 	"strconv"
 )
 
-func check(e error) {
-	if e != nil {
-		log.Fatal(e)
-	}
-}
-
-func part1(nums []int) {
+func day1_A(nums []int) {
 	freq := 0
 	for _, n := range nums {
 		freq += n
 	}
-	fmt.Printf("Result part 1: %d\n", freq)
+	fmt.Printf("Day 1, part 1: %d\n", freq)
 }
 
-func part2(nums []int) {
+func day1_B(nums []int) {
 	freq := 0
 	seen := map[int]bool{
 		0: true,
@@ -30,7 +23,7 @@ func part2(nums []int) {
 	for i := 0; true; i++ {
 		freq += nums[i%len(nums)]
 		if seen[freq] {
-			fmt.Printf("Result part 2: %d\n", freq)
+			fmt.Printf("Day 1, part 2: %d\n", freq)
 			break
 		} else {
 			seen[freq] = true
@@ -38,8 +31,8 @@ func part2(nums []int) {
 	}
 }
 
-func main() {
-	f, err := os.Open("input")
+func day1() {
+	f, err := os.Open("input/01")
 	check(err)
 	defer f.Close()
 
@@ -52,6 +45,6 @@ func main() {
 	}
 
 	check(scanner.Err())
-	part1(nums)
-	part2(nums)
+	day1_A(nums)
+	day1_B(nums)
 }
