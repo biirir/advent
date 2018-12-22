@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"log"
 	"os"
 	"strconv"
@@ -9,13 +10,29 @@ import (
 type DayFunc func()
 
 var (
-	dayfunc = [...]DayFunc{day1}
+	dayfunc = [...]DayFunc{day1, day2}
 )
 
 func check(e error) {
 	if e != nil {
 		log.Fatal(e)
 	}
+}
+
+func readLines(filename string) []string {
+	f, err := os.Open(filename)
+	check(err)
+	defer f.Close()
+
+	lines := make([]string, 0)
+	scanner := bufio.NewScanner(f)
+
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+
+	check(scanner.Err())
+	return lines
 }
 
 func main() {
