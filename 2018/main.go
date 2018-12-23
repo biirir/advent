@@ -10,13 +10,34 @@ import (
 type DayFunc func()
 
 var (
-	dayfunc = [...]DayFunc{day1, day2, day3, day4}
+	dayfunc = [...]DayFunc{day1, day2, day3, day4, nil, day6}
 )
 
 func check(e error) {
 	if e != nil {
 		log.Fatal(e)
 	}
+}
+
+func abs(x int) int {
+	if x >= 0 {
+		return x
+	}
+	return -x
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
 
 func readLines(filename string) []string {
