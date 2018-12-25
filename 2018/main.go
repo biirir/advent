@@ -10,7 +10,7 @@ import (
 type DayFunc func()
 
 var (
-	dayfunc = [...]DayFunc{day1, day2, day3, day4, day5, day6}
+	dayfunc = [...]DayFunc{day1, day2, day3, day4, day5, day6, nil, day8}
 )
 
 func check(e error) {
@@ -54,6 +54,25 @@ func readLines(filename string) []string {
 
 	check(scanner.Err())
 	return lines
+}
+
+func readInts(filename string) []int {
+	f, err := os.Open(filename)
+	check(err)
+	defer f.Close()
+
+	nums := make([]int, 0)
+	scanner := bufio.NewScanner(f)
+	scanner.Split(bufio.ScanWords)
+
+	for scanner.Scan() {
+		num, err := strconv.Atoi(scanner.Text())
+		check(err)
+		nums = append(nums, num)
+	}
+
+	check(scanner.Err())
+	return nums
 }
 
 func main() {

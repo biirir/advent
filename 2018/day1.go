@@ -1,10 +1,7 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"strconv"
 )
 
 func day1_A(nums []int) {
@@ -32,19 +29,7 @@ func day1_B(nums []int) {
 }
 
 func day1() {
-	f, err := os.Open("input/01")
-	check(err)
-	defer f.Close()
-
-	nums := make([]int, 0)
-	scanner := bufio.NewScanner(f)
-
-	for scanner.Scan() {
-		n, _ := strconv.Atoi(scanner.Text())
-		nums = append(nums, n)
-	}
-
-	check(scanner.Err())
+	nums := readInts("input/01")
 	day1_A(nums)
 	day1_B(nums)
 }
