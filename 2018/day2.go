@@ -43,41 +43,21 @@ func day2_A(lines []string) int {
 }
 
 func day2_B(lines []string) string {
-	//
-	// Let’s try bruteforce!
-	//
-	for i := range lines {
-		for j := i + 1; j < len(lines); j++ {
-			if s := day2_match(lines[i], lines[j]); s != "" {
-				return s
+	// Algorithm from https://www.reddit.com/r/adventofcode/comments/a2damm/_/eaxco3u.
+	// Also interesting: https://www.reddit.com/r/adventofcode/comments/a2damm/_/eaynnaw.
+	size := len(lines[0])
+
+	for i := 0; i < size; i++ {
+		seen := make(map[string]bool, len(lines))
+		for _, s := range lines {
+			ss := s[:i] + s[i+1:]
+			if seen[ss] {
+				return ss
 			}
+			seen[ss] = true
 		}
 	}
 	return ""
-}
-
-func day2_match(a, b string) string {
-	//
-	// Moar bruteforce.
-	//
-	pos := -1
-
-	if len(a) != len(b) {
-		return ""
-	}
-
-	for i := range a {
-		if a[i] == b[i] {
-			continue
-		}
-		if pos < 0 {
-			pos = i
-		} else {
-			return ""
-		}
-	}
-
-	return a[:pos] + b[pos+1:]
 }
 
 func day2() (string, string) {
