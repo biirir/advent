@@ -2,8 +2,8 @@ package main
 
 import (
 	"bytes"
-	"fmt"
 	"io/ioutil"
+	"strconv"
 )
 
 func polymer_match(a, b byte) bool {
@@ -53,11 +53,11 @@ func polymer_reduce(polymer []byte) int {
 	return count
 }
 
-func day5_A(polymer []byte) {
-	fmt.Println("Day 5, part 1:", polymer_reduce(polymer))
+func day5_A(polymer []byte) int {
+	return polymer_reduce(polymer)
 }
 
-func day5_B(polymer []byte) {
+func day5_B(polymer []byte) int {
 	done := make([]bool, 27)
 	minCount := len(polymer)
 	workspace := make([]byte, len(polymer))
@@ -77,14 +77,15 @@ func day5_B(polymer []byte) {
 		minCount = min(minCount, polymer_reduce(workspace))
 	}
 
-	fmt.Println("Day 5, part 2:", minCount)
+	return minCount
 }
 
-func day5() {
+func day5() (string, string) {
 	polymer, err := ioutil.ReadFile("input/05")
 	check(err)
 	polymer = bytes.TrimSpace(polymer)
 
-	day5_A(polymer)
-	day5_B(polymer)
+	a := day5_A(polymer)
+	b := day5_B(polymer)
+	return strconv.Itoa(a), strconv.Itoa(b)
 }

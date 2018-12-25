@@ -3,6 +3,7 @@ package main
 import (
 	"container/ring"
 	"fmt"
+	"strconv"
 )
 
 func makeRing(marble int) *ring.Ring {
@@ -42,12 +43,14 @@ func day9_score(players, lastval int) int {
 	return max
 }
 
-func day9() {
+func day9() (string, string) {
 	lines := readLines("input/09")
 	var players, lastval int
 	fmt.Sscanf(
 		lines[0], "%d players; last marble is worth %d points", &players, &lastval)
 
-	fmt.Println("Day 9, part 1:", day9_score(players, lastval))
-	fmt.Println("Day 9, part 2:", day9_score(players, lastval*100))
+	a := day9_score(players, lastval)
+	b := day9_score(players, lastval*100)
+
+	return strconv.Itoa(a), strconv.Itoa(b)
 }

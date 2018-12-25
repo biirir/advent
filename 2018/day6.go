@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"strconv"
 )
 
 type coord struct {
@@ -13,7 +14,7 @@ func manhattan_dist(a, b coord) int {
 	return abs(a.x-b.x) + abs(a.y-b.y)
 }
 
-func day6_A(points []coord, x, y int) {
+func day6_A(points []coord, x, y int) int {
 	// Compute the required map: for each point P, store the number of
 	// locations which have P as their closest point. This is done by
 	// visiting each location and calculating the distance with every
@@ -56,10 +57,10 @@ func day6_A(points []coord, x, y int) {
 		}
 	}
 
-	fmt.Printf("Day 6, part 1: %d\n", maxVal)
+	return maxVal
 }
 
-func day6_B(points []coord, x, y int) {
+func day6_B(points []coord, x, y int) int {
 	//
 	// Use a grid to store distances.
 	//
@@ -96,10 +97,10 @@ func day6_B(points []coord, x, y int) {
 		}
 	}
 
-	fmt.Printf("Day 6, part 2: %d\n", tot)
+	return tot
 }
 
-func day6() {
+func day6() (string, string) {
 	lines := readLines("input/06")
 	points := make([]coord, 0, len(lines))
 
@@ -117,6 +118,7 @@ func day6() {
 		y = max(y, c.y)
 	}
 
-	day6_A(points, x, y)
-	day6_B(points, x, y)
+	a := day6_A(points, x, y)
+	b := day6_B(points, x, y)
+	return strconv.Itoa(a), strconv.Itoa(b)
 }

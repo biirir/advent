@@ -1,18 +1,18 @@
 package main
 
 import (
-	"fmt"
+	"strconv"
 )
 
-func day1_A(nums []int) {
+func day1_A(nums []int) int {
 	freq := 0
 	for _, n := range nums {
 		freq += n
 	}
-	fmt.Printf("Day 1, part 1: %d\n", freq)
+	return freq
 }
 
-func day1_B(nums []int) {
+func day1_B(nums []int) int {
 	freq := 0
 	seen := map[int]bool{
 		0: true,
@@ -20,16 +20,17 @@ func day1_B(nums []int) {
 	for i := 0; true; i++ {
 		freq += nums[i%len(nums)]
 		if seen[freq] {
-			fmt.Printf("Day 1, part 2: %d\n", freq)
-			break
+			return freq
 		} else {
 			seen[freq] = true
 		}
 	}
+	return -1
 }
 
-func day1() {
+func day1() (string, string) {
 	nums := readInts("input/01")
-	day1_A(nums)
-	day1_B(nums)
+	a := day1_A(nums)
+	b := day1_B(nums)
+	return strconv.Itoa(a), strconv.Itoa(b)
 }

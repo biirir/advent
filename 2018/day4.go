@@ -4,12 +4,13 @@ import (
 	"fmt"
 	"log"
 	"sort"
+	"strconv"
 	"strings"
 )
 
 type Guard map[int]int
 
-func day4() {
+func day4() (string, string) {
 	lines := readLines("input/04")
 	sort.Strings(lines)
 
@@ -50,8 +51,6 @@ func day4() {
 	topGuard := maxByVal(totals)
 	topMinute := maxByVal(guards[topGuard])
 
-	fmt.Printf("Day 4, part 1: %d\n", topGuard*topMinute)
-
 	// Part B
 	mostGuard := -1
 	mostMinute := -1
@@ -66,11 +65,11 @@ func day4() {
 		}
 	}
 
-	fmt.Printf("Day 4, part 2: %d\n", mostGuard*mostMinute)
-
 	// Debug
-	fmt.Printf("               guard=%d minute=%d\n", topGuard, topMinute)
-	fmt.Printf("               guard=%d minute=%d\n", mostGuard, mostMinute)
+	// fmt.Printf("               guard=%d minute=%d\n", topGuard, topMinute)
+	// fmt.Printf("               guard=%d minute=%d\n", mostGuard, mostMinute)
+
+	return strconv.Itoa(topGuard * topMinute), strconv.Itoa(mostGuard * mostMinute)
 }
 
 func maxByVal(mapping map[int]int) int {

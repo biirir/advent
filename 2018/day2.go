@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"strconv"
 )
 
 // Returns two values:
@@ -27,7 +27,7 @@ func dupecounts(s string) (int, int) {
 	return two, three
 }
 
-func day2_A(lines []string) {
+func day2_A(lines []string) int {
 	mul1 := 0
 	mul2 := 0
 	for _, s := range lines {
@@ -39,21 +39,21 @@ func day2_A(lines []string) {
 			mul2++
 		}
 	}
-	fmt.Printf("Day 2, part 1: %d\n", mul1*mul2)
+	return mul1 * mul2
 }
 
-func day2_B(lines []string) {
+func day2_B(lines []string) string {
 	//
 	// Let’s try bruteforce!
 	//
 	for i := range lines {
 		for j := i + 1; j < len(lines); j++ {
 			if s := day2_match(lines[i], lines[j]); s != "" {
-				fmt.Printf("Day 2, part 2: %s\n", s)
-				return
+				return s
 			}
 		}
 	}
+	return ""
 }
 
 func day2_match(a, b string) string {
@@ -80,8 +80,9 @@ func day2_match(a, b string) string {
 	return a[:pos] + b[pos+1:]
 }
 
-func day2() {
+func day2() (string, string) {
 	lines := readLines("input/02")
-	day2_A(lines)
-	day2_B(lines)
+	a := day2_A(lines)
+	b := day2_B(lines)
+	return strconv.Itoa(a), b
 }

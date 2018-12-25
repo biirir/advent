@@ -1,17 +1,17 @@
 package main
 
 import (
-	"fmt"
+	"strconv"
 )
 
-func day8_A(nodelist []int) {
+func day8_A(nodelist []int) int {
 	var idx int
-	fmt.Println("Day 8, part 1", day8_reduce(nodelist, &idx))
+	return day8_reduce(nodelist, &idx)
 }
 
-func day8_B(nodelist []int) {
+func day8_B(nodelist []int) int {
 	var idx int
-	fmt.Println("Day 8, part 2", day8_value(nodelist, &idx))
+	return day8_value(nodelist, &idx)
 }
 
 func day8_reduce(nodelist []int, idx *int) int {
@@ -58,8 +58,9 @@ func day8_value(nodelist []int, idx *int) int {
 	return nodeValue
 }
 
-func day8() {
+func day8() (string, string) {
 	values := readInts("input/08")
-	day8_A(values)
-	day8_B(values)
+	a := day8_A(values)
+	b := day8_B(values)
+	return strconv.Itoa(a), strconv.Itoa(b)
 }

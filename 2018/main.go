@@ -2,12 +2,14 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"log"
 	"os"
 	"strconv"
 )
 
-type DayFunc func()
+// Would prefer (int, int) but a few of the challenges require string results.
+type DayFunc func() (string, string)
 
 var (
 	dayfunc = [...]DayFunc{day1, day2, day3, day4, day5, day6, nil, day8, day9}
@@ -84,5 +86,8 @@ func main() {
 		check(err)
 	}
 
-	dayfunc[day-1]()
+	a, b := dayfunc[day-1]()
+
+	fmt.Printf("Day %d, part 1: %s\n", day, a)
+	fmt.Printf("Day %d, part 2: %s\n", day, b)
 }

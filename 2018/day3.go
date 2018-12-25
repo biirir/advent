@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
 type claim struct {
@@ -21,7 +22,7 @@ func day3_claim(c *claim, cells map[cell]int) {
 	}
 }
 
-func day3_A(claims []claim) {
+func day3_A(claims []claim) (int, int) {
 	cells := make(map[cell]int)
 	overlap := 0
 
@@ -34,12 +35,11 @@ func day3_A(claims []claim) {
 			overlap++
 		}
 	}
-	fmt.Printf("Day 3, part 1: %d\n", overlap)
 
-	day3_B(claims, cells)
+	return overlap, day3_B(claims, cells)
 }
 
-func day3_B(claims []claim, cells map[cell]int) {
+func day3_B(claims []claim, cells map[cell]int) int {
 outer:
 	for i := range claims {
 		c := &claims[i]
@@ -51,12 +51,12 @@ outer:
 				}
 			}
 		}
-		fmt.Printf("Day 3, part 2: %d\n", c.id)
-		break
+		return c.id
 	}
+	return -1
 }
 
-func day3() {
+func day3() (string, string) {
 	lines := readLines("input/03")
 	claims := make([]claim, 0, len(lines))
 
@@ -67,5 +67,6 @@ func day3() {
 		claims = append(claims, p)
 	}
 
-	day3_A(claims) // Calls day3_B() with intermediate state.
+	a, b := day3_A(claims) // Calls day3_B() with intermediate state.
+	return strconv.Itoa(a), strconv.Itoa(b)
 }
