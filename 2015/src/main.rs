@@ -5,6 +5,7 @@ mod day1;
 mod day2;
 mod day3;
 mod day4;
+mod day5;
 
 use std::env;
 use std::fs::File;
@@ -13,7 +14,7 @@ use std::io::BufReader;
 
 type DayFunc = fn(Option<&str>) -> (String, String);
 
-static FUNCS: &'static [DayFunc] = &[day1::day1, day2::day2, day3::day3, day4::day4];
+static FUNCS: &'static [DayFunc] = &[day1::day1, day2::day2, day3::day3, day4::day4, day5::day5];
 
 fn bufread(filename: &str) -> BufReader<File> {
     BufReader::new(File::open(filename).unwrap())
@@ -70,5 +71,12 @@ mod tests {
         let (a, b) = super::day4::day4(None);
         assert_eq!("254575", a);
         assert_eq!("1038736", b);
+    }
+
+    #[test]
+    fn day5() {
+        let (a, b) = super::day5::day5(None);
+        assert_eq!("236", a);
+        assert_eq!("51", b);
     }
 }
