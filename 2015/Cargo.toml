@@ -4,4 +4,5 @@ version = "0.15.0"
 edition = "2018"
 
 [dependencies]
+md5 = "0.6.1"
 text_io = "0.1.7"
