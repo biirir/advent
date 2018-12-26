@@ -25,8 +25,8 @@ impl Piece {
     }
 }
 
-pub fn day2() -> (String, String) {
-    let v: Vec<_> = super::bufread("input/02")
+pub fn day2(filename: Option<&str>) -> (String, String) {
+    let v: Vec<_> = super::bufread(filename.unwrap_or("input/02"))
         .lines()
         .map(|line| {
             let (l, w, h);

@@ -10,7 +10,7 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::io::BufReader;
 
-type DayFunc = fn() -> (String, String);
+type DayFunc = fn(Option<&str>) -> (String, String);
 
 static FUNCS: &'static [DayFunc] = &[day1::day1, day2::day2, day3::day3];
 
@@ -25,12 +25,17 @@ fn readline(filename: &str) -> String {
 fn main() {
     let argv: Vec<_> = env::args().collect();
     let mut day = FUNCS.len();
+    let mut file: Option<&str> = None;
 
     if argv.len() > 1 {
         day = argv[1].parse().expect("not a number");
     }
 
-    let (a, b) = FUNCS[day - 1]();
+    if argv.len() > 2 {
+        file = Some(&argv[2]);
+    }
+
+    let (a, b) = FUNCS[day - 1](file);
 
     println!("Day {}, part 1: {}", day, a);
     println!("Day {}, part 2: {}", day, b);
@@ -40,21 +45,21 @@ fn main() {
 mod tests {
     #[test]
     fn day1() {
-        let (a, b) = super::day1::day1();
+        let (a, b) = super::day1::day1(None);
         assert_eq!("232", a);
         assert_eq!("1783", b);
     }
 
     #[test]
     fn day2() {
-        let (a, b) = super::day2::day2();
+        let (a, b) = super::day2::day2(None);
         assert_eq!("1586300", a);
         assert_eq!("3737498", b);
     }
 
     #[test]
     fn day3() {
-        let (a, b) = super::day3::day3();
+        let (a, b) = super::day3::day3(None);
         assert_eq!("2565", a);
         assert_eq!("2639", b);
     }
