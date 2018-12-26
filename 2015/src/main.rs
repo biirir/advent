@@ -1,4 +1,8 @@
+#[macro_use]
+extern crate text_io;
+
 mod day1;
+mod day2;
 
 use std::env;
 use std::fs::File;
@@ -7,7 +11,7 @@ use std::io::BufReader;
 
 type DayFunc = fn() -> (String, String);
 
-static FUNCS: &'static [DayFunc] = &[day1::day1];
+static FUNCS: &'static [DayFunc] = &[day1::day1, day2::day2];
 
 fn bufread(filename: &str) -> BufReader<File> {
     BufReader::new(File::open(filename).unwrap())
@@ -38,5 +42,12 @@ mod tests {
         let (a, b) = super::day1::day1();
         assert_eq!("232", a);
         assert_eq!("1783", b);
+    }
+
+    #[test]
+    fn day2() {
+        let (a, b) = super::day2::day2();
+        assert_eq!("1586300", a);
+        assert_eq!("3737498", b);
     }
 }

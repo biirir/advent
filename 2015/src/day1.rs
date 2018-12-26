@@ -1,3 +1,4 @@
+// https://adventofcode.com/2015/day/1
 pub fn day1() -> (String, String) {
     let brackint = |c: char| match c {
         '(' => 1,
