@@ -9,6 +9,8 @@ mod day5;
 mod day6;
 mod day7;
 mod day8;
+mod day9;
+mod graph;
 
 use std::env;
 use std::fs::File;
@@ -20,7 +22,7 @@ type DayFunc = fn(Option<&str>) -> (String, String);
 #[rustfmt::skip]
 static FUNCS: &'static [DayFunc] = &[
     day1::day1, day2::day2, day3::day3, day4::day4, day5::day5, day6::day6,
-    day7::day7, day8::day8,
+    day7::day7, day8::day8, day9::day9,
 ];
 
 fn bufread(filename: &str) -> BufReader<File> {
@@ -106,5 +108,12 @@ mod tests {
         let (a, b) = super::day8::day8(None);
         assert_eq!("1333", a);
         assert_eq!("2046", b);
+    }
+
+    #[test]
+    fn day9() {
+        let (a, b) = super::day9::day9(None);
+        assert_eq!("141", a);
+        assert_eq!("736", b);
     }
 }
