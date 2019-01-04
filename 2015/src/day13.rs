@@ -6,7 +6,7 @@ use std::io::BufRead;
 
 use super::graph::Graph;
 
-fn next_permutation(perm: &mut [usize]) -> bool {
+fn next_permutation<T: PartialOrd>(perm: &mut [T]) -> bool {
     // https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order
     let len = perm.len();
     let k = 'K: loop {
