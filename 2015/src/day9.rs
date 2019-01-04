@@ -39,13 +39,8 @@ pub fn day9(filename: Option<&str>) -> (String, String) {
 
     // Map city names to a unique vertex number.
     let mut vertex = |c| {
-        if cities.contains_key(&c) {
-            cities[&c]
-        } else {
-            let vertex = cities.len() as u32;
-            cities.insert(c, vertex);
-            vertex
-        }
+        let len = cities.len();
+        *cities.entry(c).or_insert(len as u32)
     };
 
     for line in super::bufread(filename.unwrap_or("input/09")).lines() {
