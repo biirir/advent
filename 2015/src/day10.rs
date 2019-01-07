@@ -20,7 +20,7 @@ fn iter(string: &str, times: i32) -> String {
             match n {
                 0...9 => {
                     // Cast to char to avoid an allocation.
-                    let d = (n as u8) + ('0' as u8);
+                    let d = (n as u8) + b'0';
                     s.push(d as char);
                 }
                 _ => {

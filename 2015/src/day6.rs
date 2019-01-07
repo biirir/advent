@@ -61,8 +61,8 @@ pub fn day6(filename: Option<&str>) -> (String, String) {
     let mut grid = vec![(0, 0); 1000 * 1000].into_boxed_slice();
 
     for (action, a, b, c, d) in actions {
-        for i in a..c + 1 {
-            for j in b..d + 1 {
+        for i in a..=c {
+            for j in b..=d {
                 let t = &mut grid[i * 1000 + j];
                 t.0 = action.apply(t.0);
                 t.1 = action.apply2(t.1);

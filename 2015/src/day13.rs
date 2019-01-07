@@ -9,6 +9,7 @@ use super::graph::Graph;
 fn next_permutation<T: PartialOrd>(perm: &mut [T]) -> bool {
     // https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order
     let len = perm.len();
+    #[allow(clippy::never_loop)]
     let k = 'K: loop {
         for k in (0..len - 1).rev() {
             if perm[k] < perm[k + 1] {

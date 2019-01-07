@@ -45,7 +45,7 @@ impl Graph {
         if !self.directed && !self.add_directed(dst, src, weight) {
             return false;
         }
-        return true;
+        true
     }
 
     fn add_directed(&mut self, src: Vertex, dst: Vertex, weight: Weight) -> bool {
@@ -59,7 +59,7 @@ impl Graph {
             panic!("Vertex {} too high!", src);
         }
 
-        let adj = self.adj.get_mut(idx).unwrap();
+        let adj = &mut self.adj[idx];
         let insert = !adj.contains_key(&dst);
 
         if insert {
@@ -69,6 +69,6 @@ impl Graph {
             println!("Warning: edge {} → {} already present.", src, dst);
         }
 
-        return insert;
+        insert
     }
 }
