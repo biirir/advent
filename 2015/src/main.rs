@@ -4,6 +4,7 @@ extern crate text_io;
 mod day1;
 mod day10;
 mod day11;
+mod day12;
 mod day13;
 mod day14;
 mod day15;
@@ -27,7 +28,7 @@ type DayFunc = fn(Option<&str>) -> (String, String);
 #[rustfmt::skip]
 static FUNCS: &'static [DayFunc] = &[
     day1::day1, day2::day2, day3::day3, day4::day4, day5::day5, day6::day6,
-    day7::day7, day8::day8, day9::day9, day10::day10, day11::day11,
+    day7::day7, day8::day8, day9::day9, day10::day10, day11::day11, day12::day12,
     day13::day13, day14::day14, day15::day15,
 ];
 
@@ -135,6 +136,13 @@ mod tests {
         let (a, b) = super::day11::day11(None);
         assert_eq!("hxbxxyzz", a);
         assert_eq!("hxcaabcc", b);
+    }
+
+    #[test]
+    fn day12() {
+        let (a, b) = super::day12::day12(None);
+        assert_eq!("111754", a);
+        assert_eq!("65402", b);
     }
 
     #[test]
