@@ -1,1 +1,4 @@
+Makefile
+/trash
 /target
+/Cargo.lock

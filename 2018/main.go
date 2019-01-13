@@ -12,7 +12,7 @@ import (
 type DayFunc func() (string, string)
 
 var (
-	dayfunc = [...]DayFunc{day1, day2, day3, day4, day5, day6, nil, day8, day9}
+	dayfunc = [...]DayFunc{day1, day2, day3, day4, day5, day6, day7, day8, day9}
 )
 
 func check(e error) {
