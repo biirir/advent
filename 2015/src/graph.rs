@@ -10,6 +10,7 @@ pub struct Edge {
     pub weight: Weight,
 }
 
+#[allow(non_snake_case)]
 pub struct Graph {
     V: usize,
     E: usize,
@@ -34,6 +35,7 @@ impl Graph {
         }
     }
 
+    #[allow(non_snake_case)]
     pub fn V(&self) -> usize {
         self.V
     }

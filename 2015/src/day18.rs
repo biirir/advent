@@ -83,14 +83,14 @@ mod grid {
             let side = self.side;
             assert_eq!(dst.len(), self.grid.len());
 
-            for i in 0..self.grid.len() {
+            for (i, elem) in dst.iter_mut().enumerate() {
                 if i < side || i % side == 0 || (i + 1) % side == 0 || i >= side * (side - 1) {
                     continue;
                 }
                 if self.force_on.contains(&i) {
                     continue;
                 }
-                dst[i] = self.next_status(i);
+                *elem = self.next_status(i);
             }
         }
 
