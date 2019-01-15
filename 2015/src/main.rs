@@ -177,6 +177,7 @@ mod tests {
     }
 
     #[test]
+    #[ignore] // Slow.
     fn day20() {
         let (a, b) = super::day20::day20(None);
         assert_eq!("786240", a);

@@ -12,19 +12,17 @@ pub fn day20(filename: Option<&str>) -> (String, String) {
         .unwrap();
 
     // For part 2 we take the naive approach. We could compare times.
-    let b = 'O: loop {
-        for house in 1.. {
-            let mut presents = 0;
-            for elf in divisors(house) {
-                if house <= elf * 50 {
-                    presents += elf * 11;
-                    if presents >= n {
-                        break 'O house;
-                    }
-                }
-            }
-        }
-    };
+    let b = (1..)
+        .skip_while(|&house| {
+            divisors(house)
+                .iter()
+                .filter(|&elf| house <= elf * 50)
+                .map(|&elf| elf * 11)
+                .sum::<u32>()
+                < n
+        })
+        .next()
+        .unwrap();
 
     (a.to_string(), b.to_string())
 }
