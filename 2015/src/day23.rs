@@ -1,5 +1,6 @@
 // https://adventofcode.com/2015/day/23
 
+use simple_error::{bail, SimpleError};
 use std::io::BufRead;
 
 struct Reg(usize);
@@ -26,23 +27,25 @@ impl Machine {
         }
     }
 
-    fn parse_add(&mut self, line: &str) -> Result<(), String> {
+    fn parse_add(&mut self, line: &str) -> Result<(), SimpleError> {
         let words = line.split_whitespace().collect::<Vec<_>>();
-        let reg = || match words[1] {
-            "a" | "a," => Ok(Reg(0)),
-            "b" | "b," => Ok(Reg(1)),
-            _ => return Err(format!("Unkown register {:?}", words[1])),
+        let reg = || -> Result<Reg, SimpleError> {
+            match words[1] {
+                "a" | "a," => Ok(Reg(0)),
+                "b" | "b," => Ok(Reg(1)),
+                _ => bail!("Unkown register {:?}", words[1]),
+            }
         };
-        let offset = |i: usize| words.get(i).unwrap().parse().unwrap();
+        let offset = |i: usize| words[i].parse().map_err(SimpleError::from);
 
         self.ops.push(match words[0] {
             "inc" => Op::Inc(reg()?),
             "hlf" => Op::Half(reg()?),
             "tpl" => Op::Triple(reg()?),
-            "jmp" => Op::Jmp(offset(1)),
-            "jio" => Op::JmpOne(reg()?, offset(2)),
-            "jie" => Op::JmpEven(reg()?, offset(2)),
-            _ => return Err(format!("Unkown instruction {:?}", words[0])),
+            "jmp" => Op::Jmp(offset(1)?),
+            "jio" => Op::JmpOne(reg()?, offset(2)?),
+            "jie" => Op::JmpEven(reg()?, offset(2)?),
+            _ => bail!("Unkown instruction {:?}", words[0]),
         });
         Ok(())
     }
