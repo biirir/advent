@@ -209,7 +209,7 @@ mod tests {
     fn day19() {
         let (a, b) = super::day19::day19(None);
         assert_eq!("509", a);
-        assert_eq!("", b);
+        assert_eq!("195", b);
     }
 
     #[test]
