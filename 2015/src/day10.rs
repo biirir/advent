@@ -35,7 +35,7 @@ fn iter(string: &str, times: i32) -> String {
 }
 
 pub fn day10(filename: Option<&str>) -> (String, String) {
-    let input = super::readline(filename.unwrap_or("input/10"));
+    let input = crate::readline(filename.unwrap_or("input/10"));
     let one = iter(&input, 40);
     let two = iter(&input, 50);
 

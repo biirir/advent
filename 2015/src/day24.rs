@@ -4,7 +4,7 @@ use std::cmp::min;
 use std::io::BufRead;
 
 pub fn day24(filename: Option<&str>) -> (String, String) {
-    let mut weights = super::bufread(filename.unwrap_or("input/24"))
+    let mut weights = crate::bufread(filename.unwrap_or("input/24"))
         .lines()
         .map(|l| l.unwrap().parse::<u64>().unwrap())
         .collect::<Vec<_>>();

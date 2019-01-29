@@ -5,7 +5,7 @@ pub fn day1(filename: Option<&str>) -> (String, String) {
         ')' => -1,
         _ => 0,
     };
-    let line = super::readline(filename.unwrap_or("input/01"));
+    let line = crate::readline(filename.unwrap_or("input/01"));
     let mut floor = 0;
     let mut basement = 0;
 

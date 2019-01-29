@@ -27,7 +27,7 @@ fn has_red_val(v: &Value) -> bool {
 }
 
 pub fn day12(filename: Option<&str>) -> (String, String) {
-    let v: Value = serde_json::from_reader(super::bufread(filename.unwrap_or("input/12"))).unwrap();
+    let v: Value = serde_json::from_reader(crate::bufread(filename.unwrap_or("input/12"))).unwrap();
     (
         json_sum(&v, |_| false).to_string(),
         json_sum(&v, has_red_val).to_string(),

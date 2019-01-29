@@ -43,7 +43,7 @@ pub fn day9(filename: Option<&str>) -> (String, String) {
         *cities.entry(c).or_insert(len as u32)
     };
 
-    for line in super::bufread(filename.unwrap_or("input/09")).lines() {
+    for line in crate::bufread(filename.unwrap_or("input/09")).lines() {
         let a: String;
         let b: String;
         let dist: i32;

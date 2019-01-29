@@ -26,7 +26,7 @@ impl Piece {
 }
 
 pub fn day2(filename: Option<&str>) -> (String, String) {
-    let v: Vec<_> = super::bufread(filename.unwrap_or("input/02"))
+    let v: Vec<_> = crate::bufread(filename.unwrap_or("input/02"))
         .lines()
         .map(|line| {
             let (l, w, h);

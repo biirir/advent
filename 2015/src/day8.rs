@@ -4,7 +4,7 @@ use regex::Regex;
 use std::io::BufRead;
 
 pub fn day8(filename: Option<&str>) -> (String, String) {
-    let lines: Vec<_> = super::bufread(filename.unwrap_or("input/08"))
+    let lines: Vec<_> = crate::bufread(filename.unwrap_or("input/08"))
         .lines()
         .map(|line| line.unwrap())
         .collect();

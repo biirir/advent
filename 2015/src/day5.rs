@@ -4,7 +4,7 @@ use pcre::Pcre; // ¯\_(ツ)_/¯
 use std::io::BufRead;
 
 pub fn day5(filename: Option<&str>) -> (String, String) {
-    let file = super::bufread(filename.unwrap_or("input/05"));
+    let file = crate::bufread(filename.unwrap_or("input/05"));
 
     let mut a1 = Pcre::compile(r"ab|cd|pq|xy").unwrap();
     let mut a2 = Pcre::compile(r"[aeiou].*[aeiou].*[aeiou]").unwrap();

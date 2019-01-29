@@ -84,7 +84,7 @@ impl Machine {
 pub fn day23(filename: Option<&str>) -> (String, String) {
     let mut machine = Machine::new();
 
-    for l in super::bufread(filename.unwrap_or("input/23")).lines() {
+    for l in crate::bufread(filename.unwrap_or("input/23")).lines() {
         machine.parse_add(&l.unwrap()).unwrap();
     }
 

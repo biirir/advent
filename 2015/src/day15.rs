@@ -99,7 +99,7 @@ fn score(ingredients: &[Ingredient], amounts: &[i32], exact_calories: Option<i32
 }
 
 pub fn day15(filename: Option<&str>) -> (String, String) {
-    let vec: Vec<_> = super::bufread(filename.unwrap_or("input/15")).lines()
+    let vec: Vec<_> = crate::bufread(filename.unwrap_or("input/15")).lines()
         .map(|line| {
             let line = line.unwrap();
             let (_name, capacity, durability, flavor, texture, calories);

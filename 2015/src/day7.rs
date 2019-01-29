@@ -43,7 +43,7 @@ pub fn day7(filename: Option<&str>) -> (String, String) {
         r"^((?P<src1>[a-z0-9]+) )?((?P<op>[A-Z]+) )?(?P<src2>[a-z0-9]+) -> (?P<dst>\S+)$",
     )
     .unwrap();
-    let lines: Vec<_> = super::bufread(filename.unwrap_or("input/07"))
+    let lines: Vec<_> = crate::bufread(filename.unwrap_or("input/07"))
         .lines()
         .map(|line| line.unwrap())
         .collect();

@@ -47,7 +47,7 @@ impl ScoringReindeer {
 
 pub fn day14(filename: Option<&str>) -> (String, String) {
     // Part 1: just arithmetic on each Reindeer.
-    let vec: Vec<_> = super::bufread(filename.unwrap_or("input/14")).lines()
+    let vec: Vec<_> = crate::bufread(filename.unwrap_or("input/14")).lines()
         .map(|line| {
             let line = line.unwrap();
             let (_name, speed, time_on, time_off);

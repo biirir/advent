@@ -5,7 +5,7 @@ use std::collections::HashMap;
 type Pos = (i32, i32);
 
 pub fn day3(filename: Option<&str>) -> (String, String) {
-    let line = super::readline(filename.unwrap_or("input/03"));
+    let line = crate::readline(filename.unwrap_or("input/03"));
 
     // Part 1
     let mut pos = (0, 0);

@@ -77,7 +77,7 @@ pub fn day13(filename: Option<&str>) -> (String, String) {
         *guests.entry(g).or_insert(len as u32)
     };
 
-    for line in super::bufread(filename.unwrap_or("input/13")).lines() {
+    for line in crate::bufread(filename.unwrap_or("input/13")).lines() {
         let (who, with);
         let act: String;
         let mut amt: i32;

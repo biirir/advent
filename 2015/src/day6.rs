@@ -40,7 +40,7 @@ pub fn day6(filename: Option<&str>) -> (String, String) {
     let regex: Regex =
         Regex::new(r"(turn on|turn off|toggle) (\d+),(\d+) through (\d+),(\d+)").unwrap();
     let actions: Vec<(Action, usize, usize, usize, usize)> =
-        super::bufread(filename.unwrap_or("input/06"))
+        crate::bufread(filename.unwrap_or("input/06"))
             .lines()
             .map(|line| {
                 let line = line.unwrap();

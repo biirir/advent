@@ -46,7 +46,7 @@ fn valid(s: &str) -> bool {
 }
 
 pub fn day11(filename: Option<&str>) -> (String, String) {
-    let mut input = super::readline(filename.unwrap_or("input/11"));
+    let mut input = crate::readline(filename.unwrap_or("input/11"));
     let password = &mut input;
     let mut result = Vec::new();
 
