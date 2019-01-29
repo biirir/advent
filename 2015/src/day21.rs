@@ -1,6 +1,6 @@
 // https://adventofcode.com/2015/day/21
 
-use std::cmp::max;
+use std::cmp::{max, min};
 use std::fs;
 
 use self::weapons::*;
@@ -57,12 +57,10 @@ fn best_worst(boss: &Player) -> (u32, u32) {
                         damage: weapon.damage + ring1.damage + ring2.damage,
                         armor: armor.armor + ring1.armor + ring2.armor,
                     };
-                    let won = first_wins(&player, boss);
-                    if won && cost < best {
-                        best = cost;
-                    }
-                    if !won && cost > worst {
-                        worst = cost;
+                    if first_wins(&player, boss) {
+                        best = min(best, cost);
+                    } else {
+                        worst = max(worst, cost);
                     }
                 }
             }
