@@ -15,6 +15,7 @@ mod day19;
 mod day2;
 mod day20;
 mod day21;
+mod day22;
 mod day23;
 mod day24;
 mod day25;
@@ -41,7 +42,8 @@ static FUNCS: &'static [DayFunc] = &[
     day1::day1, day2::day2, day3::day3, day4::day4, day5::day5, day6::day6,
     day7::day7, day8::day8, day9::day9, day10::day10, day11::day11, day12::day12,
     day13::day13, day14::day14, day15::day15, day16::day16, day17::day17, day18::day18,
-    day19::day19, day20::day20, day21::day21, day23::day23, day24::day24, day25::day25,
+    day19::day19, day20::day20, day21::day21, day22::day22, day23::day23, day24::day24,
+    day25::day25,
 ];
 
 fn bufread(filename: &str) -> BufReader<File> {
@@ -227,6 +229,13 @@ mod tests {
         let (a, b) = super::day21::day21(None);
         assert_eq!("111", a);
         assert_eq!("188", b);
+    }
+
+    #[test]
+    fn day22() {
+        let (a, b) = super::day22::day22(None);
+        assert_eq!("953", a);
+        assert_eq!("", b);
     }
 
     #[test]
