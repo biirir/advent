@@ -17,15 +17,19 @@ pub fn day22(filename: Option<&str>) -> (String, String) {
     let player = Wizard::new(50, 500);
     let min_easy = min_mana(player, boss, 0, std::u32::MAX);
 
-    (min_easy.to_string(), "".to_owned())
+    let boss = Boss { points, damage };
+    let player = Wizard::hard_mode(50, 500);
+    let min_hard = min_mana(player, boss, 0, std::u32::MAX);
+
+    (min_easy.to_string(), min_hard.to_string())
 }
 
 fn min_mana(in_player: Wizard, in_boss: Boss, cur: u32, mut best: u32) -> u32 {
-    for spell in SPELLS_BY_COST {
+    if cur > best {
+        return best;
+    }
+    for spell in SPELL_LIST {
         let newcur = cur + COSTS[spell];
-        if newcur > best {
-            break;
-        }
         let mut boss = in_boss.clone();
         let mut player = in_player.clone();
         match player.advance_turn(&mut boss, *spell) {
@@ -33,8 +37,7 @@ fn min_mana(in_player: Wizard, in_boss: Boss, cur: u32, mut best: u32) -> u32 {
             Ok(Outcome::Continue) => {
                 best = min(best, min_mana(player, boss, newcur, best));
             }
-            Err(Failure::NoMana) => break,
-            _ => continue,
+            _ => (),
         }
     }
     best
@@ -59,7 +62,7 @@ lazy_static! {
     };
 }
 
-const SPELLS_BY_COST: &[Spell] = &[
+const SPELL_LIST: &[Spell] = &[
     Spell::Missile,
     Spell::Drain,
     Spell::Shield,
@@ -86,6 +89,7 @@ struct Wizard {
     armor: i32,
     points: i32,
     effects: Vec<(i32, Spell)>,
+    hard_mode: bool,
 }
 
 #[derive(Clone)]
@@ -101,6 +105,14 @@ impl Wizard {
             points,
             armor: 0,
             effects: Vec::new(),
+            hard_mode: false,
+        }
+    }
+
+    fn hard_mode(points: i32, mana: u32) -> Wizard {
+        Wizard {
+            hard_mode: true,
+            ..Wizard::new(points, mana)
         }
     }
 
@@ -117,8 +129,18 @@ impl Wizard {
         // Check it's not a duplicate spell.
         //
         for (count, curspell) in &self.effects {
-            if *curspell == spell && *count > 0 {
+            if *curspell == spell && *count > 1 {
                 bail!(Failure::DuplicateSpell);
+            }
+        }
+
+        //
+        // Hard mode (for part B).
+        //
+        if self.hard_mode {
+            self.points -= 1;
+            if self.points <= 0 {
+                return Ok(Outcome::Lose);
             }
         }
 

@@ -235,7 +235,7 @@ mod tests {
     fn day22() {
         let (a, b) = super::day22::day22(None);
         assert_eq!("953", a);
-        assert_eq!("", b);
+        assert_eq!("1289", b);
     }
 
     #[test]
