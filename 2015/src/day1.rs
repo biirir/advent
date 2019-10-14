@@ -1,5 +1,4 @@
 // https://adventofcode.com/2015/day/1
-// This was modified by Rohith.
 pub fn day1(filename: Option<&str>) -> (String, String) {
     let brackint = |c: char| match c {
         '(' => 1,

@@ -1,5 +1,4 @@
 // https://adventofcode.com/2015/day/2
-// This line was also changed by Rohith.
 use std::cmp::min;
 use std::io::BufRead;
 
